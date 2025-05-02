@@ -1,3 +1,5 @@
+#Methodology: Seed sequences taken from Rostain et al. (2023) Supplementary Table 2 and 4. Any sequences with Log2FC + SD < 0 AND Log2FC < -0.5 were included, making this very permissive. 
+
 toxic_motif
 ACCCA
 AGGAA
