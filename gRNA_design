@@ -4,8 +4,7 @@ import pandas as pd
 #Use table of toxic_seed_motifs
 toxic_motifs = pd.read_csv("path_to_bad_seeds.csv")
 
-#generates initial library of gRNA spacer sequences
-
+#generates initial library of gRNAs
 def generate_random_sequences(num, length=20):
 
     nucleotides = ['A', 'T', 'C', 'G']
