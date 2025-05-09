@@ -1,26 +1,21 @@
 import pandas as pd
 
 def parse_fasta(filename):
-    """
-    A simple FASTA parser that yields (header, sequence) tuples.
-    Assumes the header line starts with '>'.
-    """
+
     with open(filename, "r") as f:
         header = None
         sequence_lines = []
         for line in f:
             line = line.strip()
             if not line:
-                continue  # skip empty lines
+                continue  
             if line.startswith(">"):
-                # If there is an existing record, yield it before starting a new one.
                 if header is not None:
                     yield header, "".join(sequence_lines)
                 header = line[1:].split()[0]  # Use the first word in the header as the ID
                 sequence_lines = []
             else:
                 sequence_lines.append(line)
-        # Yield the last record in the file.
         if header is not None:
             yield header, "".join(sequence_lines)
 
@@ -57,8 +52,7 @@ sig_hits_genome = genome_df[
 sig_hits_circuit = circuit_df[
     (circuit_df["length"] >= 17) & (circuit_df["mismatch"] <= (circuit_df["length"] - 17))]
 
-# Combine the guide names flagged by both filters.
-
+# Combined the guide names flagged by both filters.
 seed_guides = set(seed_hits_genome["gRNA_name"].unique()).union(seed_hits_circuit["gRNA_name"].unique())
 sig_guides = set(sig_hits_genome["gRNA_name"].unique()).union(sig_hits_circuit["gRNA_name"].unique())
 overlapping_guides = seed_guides.union(sig_guides)
